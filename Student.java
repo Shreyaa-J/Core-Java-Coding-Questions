@@ -20,7 +20,7 @@ public class Student {
 		System.out.println("Driver Class Loaded Sucessfully...");
 		
 		//2.Build The Connection
-		Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/batch1043","root","orchid@123");
+		Connection c= DriverManager.getConnection("jdbc:mysql://localhost:3306/batch1043","root","root");
 		
 		//3.Create JDBC Statement/ Prepare Statement
 		Statement s=c.createStatement();
