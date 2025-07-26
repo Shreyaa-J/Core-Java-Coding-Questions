@@ -1,0 +1,18 @@
+public class KeepOnlyAlphabets {
+    public static void main(String[] args) {
+        String input = "shreya123";
+        String result = "";
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+
+            // Check if character is a letter (A-Z or a-z)
+            if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+                result += ch;
+            }
+        }
+
+        System.out.println("Original String: " + input);
+        System.out.println("Alphabets Only: " + result);
+    }
+}
