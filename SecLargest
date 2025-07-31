@@ -1,0 +1,23 @@
+public class SecLargest{
+
+public static int seclargest(int a[],int n){
+int largest=a[0];
+int slargest=-1;
+
+for(int i=1;i<n;i++){
+if(a[i]>largest){
+slargest=largest;
+largest=a[i];
+}
+else if(a[i]<largest && a[i]>slargest){
+slargest=a[i];
+}
+}
+return slargest;
+}
+public static void main(String args[]){
+int[]arr={2,6,3,8,1,7};
+int[] result=seclargest(arr,n)
+System.out.println("Secomd Largest : "+result[0];
+}
+}
