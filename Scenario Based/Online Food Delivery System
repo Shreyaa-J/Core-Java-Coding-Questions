@@ -1,0 +1,105 @@
+/* Scenario: Online Food Delivery System 
+You are building part of an online food delivery system. The app needs to calculate the total bill amount for a customer’s order, applying these rules:
+
+Menu is predefined with prices for each item.
+Example:
+
+Burger → ₹150  
+Pizza → ₹250  
+Sandwich → ₹120  
+Fries → ₹80  
+Coke → ₹50
+Customer’s order is given as a list of items and quantities.
+Example:
+
+Pizza × 2, Coke × 3, Fries × 1
+Rules for billing:
+
+If total bill ≥ ₹1000, apply a 10% discount.
+
+Delivery charge is ₹50, but free if the bill (after discount) is more than ₹500.
+
+Display a detailed bill showing:
+
+Item name, quantity, unit price, total for that item.
+
+Discount (if any).
+
+Delivery charge.
+
+Final amount to pay.
+
+Expected Output Example
+If the order is:
+
+Pizza × 2, Coke × 3, Fries × 1
+Output could be:
+
+Item         Qty   Unit Price   Total
+Pizza        2     250          500
+Coke         3      50          150
+Fries        1      80           80
+---------------------------------------
+Subtotal: ₹730
+Discount: ₹0
+Delivery: ₹50
+---------------------------------------
+Final Amount: ₹780                                                                                                                                               */
+
+//ans
+import java.util.*;
+
+public class FoodDeliveryBilling {
+    public static void main(String[] args) {
+
+        // Step 1: Predefined Menu with Prices
+        Map<String, Integer> menu = new LinkedHashMap<>();
+        menu.put("Burger", 150);
+        menu.put("Pizza", 250);
+        menu.put("Sandwich", 120);
+        menu.put("Fries", 80);
+        menu.put("Coke", 50);
+
+        // Step 2: Customer Order (Item → Quantity)
+        Map<String, Integer> order = new LinkedHashMap<>();
+        order.put("Pizza", 2);
+        order.put("Coke", 3);
+        order.put("Fries", 1);
+
+        double subtotal = 0;
+
+        // Step 3: Display Bill Header
+        System.out.printf("%-12s %-5s %-12s %-8s%n", "Item", "Qty", "Unit Price", "Total");
+
+        // Step 4: Calculate Item Totals
+        for (Map.Entry<String, Integer> entry : order.entrySet()) {
+            String item = entry.getKey();
+            int qty = entry.getValue();
+            int price = menu.get(item);
+            double total = qty * price;
+            subtotal += total;
+            System.out.printf("%-12s %-5d %-12d %-8.2f%n", item, qty, price, total);
+        }
+
+        // Step 5: Apply Discount
+        double discount = 0;
+        if (subtotal >= 1000) {
+            discount = subtotal * 0.10; // 10% discount
+        }
+
+        // Step 6: Delivery Charge Logic
+        double deliveryCharge = (subtotal - discount) > 500 ? 0 : 50;
+
+        // Step 7: Final Amount
+        double finalAmount = subtotal - discount + deliveryCharge;
+
+        // Step 8: Print Summary
+        System.out.println("---------------------------------------");
+        System.out.printf("Subtotal: ₹%.2f%n", subtotal);
+        System.out.printf("Discount: ₹%.2f%n", discount);
+        System.out.printf("Delivery: ₹%.2f%n", deliveryCharge);
+        System.out.println("---------------------------------------");
+        System.out.printf("Final Amount: ₹%.2f%n", finalAmount);
+    }
+}
+
