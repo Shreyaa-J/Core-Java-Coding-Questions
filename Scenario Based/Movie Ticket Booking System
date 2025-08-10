@@ -1,0 +1,166 @@
+/*
+Scenario: Movie Ticket Booking System 🎬
+A cinema hall wants a program to calculate the total price for tickets booked by a customer.
+
+Requirements:
+Ticket Prices:
+
+Normal Ticket → ₹150
+
+Premium Ticket → ₹250
+
+VIP Ticket → ₹400
+
+Discount Rules:
+
+If booking more than 5 tickets, apply 10% discount.
+
+If total price after discount exceeds ₹2000, apply an extra 5% discount.
+
+Output:
+
+Show type of ticket, number of tickets, price per ticket, total before discount, total after discount.
+
+Example
+Input:
+
+yaml
+Copy
+Edit
+Ticket Type: Premium
+Number of Tickets: 8
+Output:
+
+yaml
+Copy
+Edit
+Ticket Type: Premium
+Ticket Price: ₹250
+Quantity: 8
+Total Before Discount: ₹2000
+Discount Applied: ₹250
+Final Price: ₹1750
+*/
+
+import java.util.Scanner;
+
+public class MovieTicketBooking {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Step 1: Input
+        System.out.print("Enter Ticket Type (Normal/Premium/VIP): ");
+        String ticketType = sc.next();
+        System.out.print("Enter Number of Tickets: ");
+        int quantity = sc.nextInt();
+
+        int pricePerTicket = 0;
+
+        // Step 2: Assign price based on ticket type
+        if (ticketType.equalsIgnoreCase("Normal")) {
+            pricePerTicket = 150;
+        } else if (ticketType.equalsIgnoreCase("Premium")) {
+            pricePerTicket = 250;
+        } else if (ticketType.equalsIgnoreCase("VIP")) {
+            pricePerTicket = 400;
+        } else {
+            System.out.println("Invalid ticket type entered!");
+            sc.close();
+            return;
+        }
+
+        // Step 3: Calculate total before discount
+        double totalBeforeDiscount = pricePerTicket * quantity;
+        double discount = 0;
+
+        // Step 4: Apply discounts
+        if (quantity > 5) {
+            discount += totalBeforeDiscount * 0.10; // 10% discount
+        }
+
+        double afterFirstDiscount = totalBeforeDiscount - discount;
+
+        if (afterFirstDiscount > 2000) {
+            discount += afterFirstDiscount * 0.05; // extra 5% discount
+        }
+
+        // Step 5: Final price
+        double finalPrice = totalBeforeDiscount - discount;
+
+        // Step 6: Output
+        System.out.println("\n--- BILL SUMMARY ---");
+        System.out.println("Ticket Type: " + ticketType);
+        System.out.println("Ticket Price: ₹" + pricePerTicket);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Total Before Discount: ₹" + totalBeforeDiscount);
+        System.out.println("Total Discount: ₹" + discount);
+        System.out.println("Final Price: ₹" + finalPrice);
+
+        sc.close();
+    }
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*// Using switch case
+
+import java.util.Scanner;
+
+public class MovieTicketBookingSwitch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Step 1: Input
+        System.out.print("Enter Ticket Type (Normal/Premium/VIP): ");
+        String ticketType = sc.next();
+        System.out.print("Enter Number of Tickets: ");
+        int quantity = sc.nextInt();
+
+        int pricePerTicket;
+
+        // Step 2: Assign price using switch-case
+        switch (ticketType.toLowerCase()) {
+            case "normal":
+                pricePerTicket = 150;
+                break;
+            case "premium":
+                pricePerTicket = 250;
+                break;
+            case "vip":
+                pricePerTicket = 400;
+                break;
+            default:
+                System.out.println("Invalid ticket type entered!");
+                sc.close();
+                return;
+        }
+
+        // Step 3: Calculate total before discount
+        double totalBeforeDiscount = pricePerTicket * quantity;
+        double discount = 0;
+
+        // Step 4: Apply discounts
+        if (quantity > 5) {
+            discount += totalBeforeDiscount * 0.10; // 10% discount
+        }
+
+        double afterFirstDiscount = totalBeforeDiscount - discount;
+
+        if (afterFirstDiscount > 2000) {
+            discount += afterFirstDiscount * 0.05; // extra 5% discount
+        }
+
+        // Step 5: Final price
+        double finalPrice = totalBeforeDiscount - discount;
+
+        // Step 6: Output
+        System.out.println("\n--- BILL SUMMARY ---");
+        System.out.println("Ticket Type: " + ticketType);
+        System.out.println("Ticket Price: ₹" + pricePerTicket);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Total Before Discount: ₹" + totalBeforeDiscount);
+        System.out.println("Total Discount: ₹" + discount);
+        System.out.println("Final Price: ₹" + finalPrice);
+
+        sc.close();
+    }
+}
+*/
